@@ -1,0 +1,6 @@
+model\PrioridadeTarefa.class
+model\SituacaoTarefa.class
+controller\TarefaBean.class
+dao\TarefaDAO.class
+dao\EMFCreator.class
+model\Tarefa.class

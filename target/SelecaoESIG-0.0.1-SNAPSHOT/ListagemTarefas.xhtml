@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>Listagem de Tarefa</title>
+	<link rel="stylesheet" type="text/css" href="css/stylesLis.css" />
+</h:head>
+
+<h:body>
+	<div class="div-container">
+		<h:form>
+			<p:panel id="container-pai" header="Listagem de Tarefas">
+
+				<div id="div_numero">
+					<p:outputLabel for="numero" value="Número:" />
+					<p:inputText id="numero" value="#{tarefaBean.titulo}" />
+				</div>
+
+				<div id="div_titu_desc">
+					<p:outputLabel for="titudesc" value="Título/Descrição:" />
+					<p:inputTextarea id="titudesc" value="#{tarefaBean.descricao}" />
+				</div>
+
+				<div class="gp_drop">
+					<div id="drop_responsavel">
+						<p:outputLabel for="responsavel" value="Responsável:" />
+						<p:selectOneMenu id="responsavel"
+							value="#{tarefaBean.responsavel}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{tarefaBean.responsaveis}"
+								var="responsavelTarefa"
+								itemLabel="#{responsavelTarefa.responsavel}"
+								itemValue="#{responsavelTarefa}" />
+						</p:selectOneMenu>
+					</div>
+
+					<div id="drop_situacao">
+						<p:outputLabel for="situacao" value="Situação:" />
+						<p:selectOneMenu id="situacao" value="#{tarefaBean.situacao}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{tarefaBean.situacoes}"
+								var="situacaoTarefa" itemLabel="#{situacaoTarefa.situacao}"
+								itemValue="#{situacaoTarefa}" />
+						</p:selectOneMenu>
+					</div>
+
+					<div id="id_botao">
+						<p:commandButton value="Buscar Tarefas"
+							action="#{tarefaBean.listarTarefas}" ajax="false" />
+					</div>
+				</div>
+				<br></br>
+				<div id="div_lista"
+					style="display: flex; justify-content: center; align-items: center;">
+					<p:dataTable value="#{tarefaBean.tarefas}" var="tarefax"
+						style="text-align: center;">
+						<p:column headerText="Número" style="text-align: center;">
+							<h:outputText value="#{tarefax.numero}" />
+						</p:column>
+						<p:column headerText="Título" style="text-align: center;">
+							<h:outputText value="#{tarefax.titulo}" />
+						</p:column>
+						<p:column headerText="Responsável" style="text-align: center;">
+							<h:outputText value="#{tarefax.responsavel}" />
+						</p:column>
+						<p:column headerText="Ações" style="text-align: center;">
+							<p:commandButton icon="pi pi-pencil" title="Editar"
+								oncomplete="PF('editDialogWidget').show();">
+								<f:setPropertyActionListener target="#{tarefaBean.tarefa}"
+									value="#{tarefax}" />
+							</p:commandButton>
+							<p:spacer width="10" />
+							<p:commandButton icon="pi pi-trash" title="Excluir"
+								style="background-color: red; color: white;" />
+							<p:spacer width="10" />
+							<p:commandButton icon="pi pi-check" title="Concluir"
+								style="background-color: green; color: white;" />
+						</p:column>
+					</p:dataTable>
+
+					<p:dialog id="dialogEditar" header="Editar Tarefa"
+						widgetVar="editDialogWidget">
+						<h:form>
+							<p:outputLabel for="titulo" value="Título:" />
+							<p:inputText id="titulo" value="#{tarefaBean.tarefa.titulo}" />
+
+							<p:outputLabel for="descricao" value="Descrição:" />
+							<p:inputText id="descricao"
+								value="#{tarefaBean.tarefa.descricao}" />
+
+							<p:commandButton value="Salvar"
+								actionListener="#{tarefaBean.salvarEdicaoTarefa}"
+								oncomplete="PF('editDialogWidget').hide();" />
+						</h:form>
+					</p:dialog>
+
+				</div>
+			</p:panel>
+		</h:form>
+	</div>
+</h:body>
+
+</html>
