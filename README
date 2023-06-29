@@ -35,7 +35,7 @@ O sistema será carregado e criará automaticamente as tabelas necessárias no b
 Abra um navegador da web e acesse o endereço http://localhost:8080/SelecaoESIG (ajuste a porta do servidor de acordo com a configuração do seu ambiente).
 O sistema será carregado e você poderá começar a utilizar as funcionalidades de gerenciamento de tarefas.
 Utilize http://localhost:8080/SelecaoESIG/CadastrarTarefa.xhtml para a aba de cadastro de tarefas.
-Utilize http://localhost:8080/SelecaoESIG/CadastrarTarefa.xhtml para a aba de listagem de tarefas.
+Utilize http://localhost:8080/SelecaoESIG/ListagemTarefas.xhtml para a aba de listagem de tarefas.
 
 Observações:
 Certifique-se de que você tenha configurado corretamente todas as dependências, bibliotecas e drivers necessários para a conexão com o banco de dados PostgreSQL. Além disso, verifique se o banco de dados PostgreSQL está em execução e acessível.
